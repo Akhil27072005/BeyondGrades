@@ -77,3 +77,15 @@ The platform features a **proprietary matching engine** designed to help recruit
 | Job Post Creation Form | ![Job Post Creation](https://res.cloudinary.com/dqcov9axv/image/upload/w_700,h_450/v1760874770/18ad9184-dad8-482d-a128-27f060b5a259.png) | Input form for skills, proficiency, and domain classification |
 
 ---
+
+
+## ⚠️ About the Code
+
+The source code for **Beyond Grades** is **not publicly available** in this repository due to the following reasons:
+
+- **Privacy & Security:** The platform handles sensitive student and recruiter data. Making the full code public could expose private information or credentials.  
+- **Proprietary Logic:** The matching engine and scoring algorithms are proprietary and form the core intellectual property of the platform.  
+- **Deployment & Integration:** The system relies on multiple services (Python microservice, Cloudinary storage, MongoDB Atlas, OAuth integrations) that require secure environment configurations.
+
+> While the complete code is not shared publicly, we provide a **live demo, screenshots, and detailed walkthroughs** to illustrate the platform’s functionality and capabilities.
+
