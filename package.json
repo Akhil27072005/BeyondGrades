@@ -1,0 +1,42 @@
+{
+  "name": "beyond-grades",
+  "version": "1.0.0",
+  "description": "MERN Stack Job Matching Platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\" \"npm run matcher:dev\"",
+    "server:dev": "cd server && npm run dev",
+    "client:dev": "cd client && npm run dev",
+    "matcher:dev": "cd matcher_service && python main.py",
+    "server:start": "cd server && npm start",
+    "client:start": "cd client && npm run build && npm run preview",
+    "matcher:start": "cd matcher_service && uvicorn main:app --host 0.0.0.0 --port 8000",
+    "seed": "cd server && npm run seed",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": [
+    "mern",
+    "job-matching",
+    "recruitment",
+    "students",
+    "recruiters",
+    "matching-algorithm"
+  ],
+  "author": "Beyond Grades Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/beyond-grades.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/beyond-grades/issues"
+  },
+  "homepage": "https://github.com/your-username/beyond-grades#readme"
+}

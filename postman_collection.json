@@ -1,0 +1,517 @@
+{
+  "info": {
+    "name": "Beyond Grades API",
+    "description": "Complete API collection for Beyond Grades platform",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:4000/api",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Student Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@iitd.ac.in\",\n  \"password\": \"password123\",\n  \"collegeId\": \"college1\",\n  \"yearOfGraduation\": 2024,\n  \"phone\": \"+91-9876543210\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/signup",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Recruiter Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Smith\",\n  \"email\": \"jane.smith@techcorp.com\",\n  \"password\": \"password123\",\n  \"companyName\": \"TechCorp Solutions\",\n  \"companyWebsite\": \"https://techcorp.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/recruiter-signup",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "recruiter-signup"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john.doe@iitd.ac.in\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Students",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/students/me",
+              "host": ["{{base_url}}"],
+              "path": ["students", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe Updated\",\n  \"phone\": \"+91-9876543210\",\n  \"githubUrl\": \"https://github.com/johndoe\",\n  \"portfolioUrl\": \"https://johndoe.dev\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/students/me",
+              "host": ["{{base_url}}"],
+              "path": ["students", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update Skills",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skills\": [\n    {\n      \"name\": \"JavaScript\",\n      \"level\": \"advanced\",\n      \"years\": 2,\n      \"confidence\": 0.8\n    },\n    {\n      \"name\": \"React\",\n      \"level\": \"intermediate\",\n      \"years\": 1,\n      \"confidence\": 0.7\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/students/me/skills",
+              "host": ["{{base_url}}"],
+              "path": ["students", "me", "skills"]
+            }
+          }
+        },
+        {
+          "name": "Create Project",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"E-commerce Platform\",\n  \"description\": \"Full-stack e-commerce solution with React and Node.js\",\n  \"repoUrl\": \"https://github.com/johndoe/ecommerce\",\n  \"demoUrl\": \"https://ecommerce-demo.com\",\n  \"role\": \"Full Stack Developer\",\n  \"contributions\": [\"Frontend development\", \"API integration\", \"Database design\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/students/me/projects",
+              "host": ["{{base_url}}"],
+              "path": ["students", "me", "projects"]
+            }
+          }
+        },
+        {
+          "name": "Get Recommended Jobs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/students/me/recommended-jobs",
+              "host": ["{{base_url}}"],
+              "path": ["students", "me", "recommended-jobs"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recruiters",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/recruiters/me",
+              "host": ["{{base_url}}"],
+              "path": ["recruiters", "me"]
+            }
+          }
+        },
+        {
+          "name": "Register Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"TechCorp Solutions\",\n  \"companyWebsite\": \"https://techcorp.com\",\n  \"companyDescription\": \"Leading technology company focused on innovation\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/recruiters/register-company",
+              "host": ["{{base_url}}"],
+              "path": ["recruiters", "register-company"]
+            }
+          }
+        },
+        {
+          "name": "Create Job",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Senior Software Engineer\",\n  \"description\": \"We are looking for a Senior Software Engineer to join our team.\",\n  \"domain\": \"web development\",\n  \"requiredSkills\": [\n    {\n      \"name\": \"JavaScript\",\n      \"requiredLevel\": \"advanced\",\n      \"weight\": 1.0\n    },\n    {\n      \"name\": \"React\",\n      \"requiredLevel\": \"intermediate\",\n      \"weight\": 0.8\n    }\n  ],\n  \"optionalSkills\": [\"TypeScript\", \"AWS\"],\n  \"minExperienceYears\": 2,\n  \"locationType\": \"hybrid\",\n  \"batchTarget\": [2024, 2025]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/recruiters/me/jobs",
+              "host": ["{{base_url}}"],
+              "path": ["recruiters", "me", "jobs"]
+            }
+          }
+        },
+        {
+          "name": "Get Job Shortlist",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/recruiters/me/jobs/{{job_id}}/shortlist?topN=10",
+              "host": ["{{base_url}}"],
+              "path": ["recruiters", "me", "jobs", "{{job_id}}", "shortlist"],
+              "query": [
+                {
+                  "key": "topN",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Student as Hired",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": \"{{student_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/recruiters/me/jobs/{{job_id}}/mark-hired",
+              "host": ["{{base_url}}"],
+              "path": ["recruiters", "me", "jobs", "{{job_id}}", "mark-hired"]
+            }
+          }
+        },
+        {
+          "name": "Get Skill Distribution",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/recruiters/me/skill-distribution?collegeId=college1&batch=2024",
+              "host": ["{{base_url}}"],
+              "path": ["recruiters", "me", "skill-distribution"],
+              "query": [
+                {
+                  "key": "collegeId",
+                  "value": "college1"
+                },
+                {
+                  "key": "batch",
+                  "value": "2024"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Verify Recruiter",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recruiterId\": \"{{recruiter_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/verify-recruiter",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "verify-recruiter"]
+            }
+          }
+        },
+        {
+          "name": "Get Pending Recruiters",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/pending-recruiters",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "pending-recruiters"]
+            }
+          }
+        },
+        {
+          "name": "Get System Logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/logs",
+              "host": ["{{base_url}}"],
+              "path": ["admin", "logs"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Miscellaneous",
+      "item": [
+        {
+          "name": "Get Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/notifications/me",
+              "host": ["{{base_url}}"],
+              "path": ["notifications", "me"]
+            }
+          }
+        },
+        {
+          "name": "Get Alumni Directory",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/alumni?collegeId=college1&search=javascript",
+              "host": ["{{base_url}}"],
+              "path": ["alumni"],
+              "query": [
+                {
+                  "key": "collegeId",
+                  "value": "college1"
+                },
+                {
+                  "key": "search",
+                  "value": "javascript"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Public Jobs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/jobs?domain=web development&locationType=remote",
+              "host": ["{{base_url}}"],
+              "path": ["jobs"],
+              "query": [
+                {
+                  "key": "domain",
+                  "value": "web development"
+                },
+                {
+                  "key": "locationType",
+                  "value": "remote"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

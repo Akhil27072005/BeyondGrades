@@ -1,0 +1,504 @@
+/* Student Projects page – scoped to avoid conflicts */
+
+/* Page header and add button */
+.student-projects-page .spj-page-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.02em;
+}
+
+.student-projects-page .spj-btn-add {
+  background: #2563eb;
+  border-color: #2563eb;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 0.5rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.student-projects-page .spj-btn-add:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+/* Project cards on list */
+.student-projects-page .spj-project-card {
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  overflow: hidden;
+  background: #fff;
+}
+
+.student-projects-page .spj-project-card .card-body {
+  background: #fff;
+  color: #1e293b;
+}
+
+.student-projects-page .spj-project-card:hover {
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.student-projects-page .spj-project-card .card-title {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.student-projects-page .spj-project-card-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.15rem;
+}
+
+.student-projects-page .spj-project-role-pill {
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(37, 99, 235, 0.12);
+  color: #1e40af;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  display: inline-flex;
+  align-items: center;
+}
+
+.student-projects-page .spj-project-description {
+  font-size: 0.9rem;
+  color: #475569 !important;
+}
+
+.student-projects-page .spj-project-tags {
+  font-size: 0.8rem;
+}
+
+.student-projects-page .spj-tag-label-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  font-size: 0.85rem;
+}
+
+.student-projects-page .spj-tag-label-text {
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+}
+
+.student-projects-page .spj-project-links-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.student-projects-page .spj-project-link-btn {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid #2563eb;
+  background: rgba(37, 99, 235, 0.08);
+  color: #1d4ed8;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.student-projects-page .spj-project-link-btn:hover {
+  background: rgba(37, 99, 235, 0.15);
+  color: #1e40af;
+  border-color: #1d4ed8;
+}
+
+.student-projects-page .spj-project-card-footer {
+  border-top: 1px dashed rgba(100, 116, 139, 0.4);
+  margin-top: 0.25rem;
+  padding-top: 0.5rem;
+}
+
+.student-projects-page .spj-project-card-footer .text-muted {
+  color: #475569 !important;
+}
+
+/* Card chips – ensure readable contrast on light background */
+.student-projects-page .spj-project-card .spj-chip-skill {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+.student-projects-page .spj-project-card .spj-chip-domain {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.student-projects-page .spj-btn-edit {
+  border-radius: 10px;
+  font-weight: 600;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.student-projects-page .spj-btn-edit:hover {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+/* Empty state */
+.student-projects-page .spj-empty-card {
+  border-radius: 16px;
+  border: 2px dashed rgba(37, 99, 235, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* ========== Project Modal (rendered in portal – use .spj-modal only) ========== */
+.spj-modal .modal-content {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+/* Form wrapper so body + footer layout correctly */
+.spj-modal .modal-content form {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.spj-modal .modal-header {
+  border: none;
+  padding: 0;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.spj-modal .spj-modal-header-inner {
+  padding: 1rem 3rem 1rem 1.5rem;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.spj-modal .spj-modal-header-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.spj-modal .spj-modal-header-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+}
+
+.spj-modal .spj-modal-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.spj-modal .spj-modal-subtitle {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin: 0.15rem 0 0 0;
+}
+
+.spj-modal .btn-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  background-color: #fff;
+  border-radius: 10px;
+  opacity: 1;
+  padding: 0.55rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --bs-btn-close-color: #1e293b;
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%231e293b'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e");
+}
+
+.spj-modal .btn-close:hover {
+  background-color: #f1f5f9;
+  --bs-btn-close-color: #0f172a;
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230f172a'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/%3e%3c/svg%3e");
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Modal body – must be visible and scrollable */
+.spj-modal .modal-body {
+  padding: 1.5rem 1.75rem;
+  background: #f8fafc;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 200px;
+  position: relative;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 100% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(59, 130, 246, 0.05) 0%, transparent 45%);
+}
+
+/* Section blocks */
+.spj-modal .spj-form-section {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.spj-modal .spj-form-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.spj-modal .spj-section-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spj-modal .spj-section-title .spj-section-icon {
+  color: #2563eb;
+}
+
+/* Form groups with icons */
+.spj-modal .spj-field-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.spj-modal .spj-field-wrap:last-child {
+  margin-bottom: 0;
+}
+
+.spj-modal .spj-field-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+
+.spj-modal .spj-field-icon i.bi,
+.spj-modal .spj-field-icon svg {
+  width: 20px;
+  height: 20px;
+  font-size: 1.1rem;
+}
+
+.spj-modal .spj-field-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.spj-modal .spj-field-body .form-label {
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.spj-modal .spj-field-body .form-control,
+.spj-modal .spj-field-body .form-select {
+  border-radius: 12px;
+  border-color: #e2e8f0;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.spj-modal .spj-field-body .form-control:focus,
+.spj-modal .spj-field-body .form-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.spj-modal .spj-field-body textarea.form-control {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Tag / list input rows */
+.spj-modal .spj-tag-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  align-items: center;
+}
+
+.spj-modal .spj-tag-row .form-control {
+  border-radius: 12px;
+  border-color: #e2e8f0;
+  padding: 0.5rem 1rem;
+}
+
+.spj-modal .spj-tag-add-btn {
+  border-radius: 12px;
+  font-weight: 600;
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.spj-modal .spj-tag-add-btn:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  color: #fff;
+}
+
+/* Tag chips */
+.spj-modal .spj-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.spj-modal .spj-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.spj-modal .spj-chip:hover {
+  transform: translateY(-1px);
+}
+
+.spj-modal .spj-chip-skill {
+  background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+  color: #1e40af;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.spj-modal .spj-chip-domain {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.spj-modal .spj-chip-contribution {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.spj-modal .spj-chip-remove {
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.7;
+  cursor: pointer;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 1rem;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.spj-modal .spj-chip-remove:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Modal footer */
+.spj-modal .modal-footer {
+  border: none;
+  padding: 1.25rem 1.75rem;
+  background: #fff;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.spj-modal .spj-btn-cancel {
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  color: #64748b;
+  border-color: #e2e8f0;
+  background: #fff;
+}
+
+.spj-modal .spj-btn-cancel:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+.spj-modal .spj-btn-save {
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  background: #2563eb;
+  border-color: #2563eb;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.spj-modal .spj-btn-save:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.spj-modal .spj-btn-save:disabled {
+  opacity: 0.8;
+}

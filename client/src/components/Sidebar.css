@@ -1,0 +1,165 @@
+/* Reusable sidebar – all classes namespaced with .app-sidebar to avoid conflicts */
+
+.app-sidebar {
+  width: 260px;
+  height: 100vh;
+  max-height: 100vh;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.app-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px;
+}
+
+.app-sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-sidebar-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: #1e293b;
+  color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-sidebar-logo-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.app-sidebar-app-name {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #1e293b;
+  letter-spacing: -0.01em;
+}
+
+.app-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+  flex: 1;
+}
+
+.app-sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+
+.app-sidebar-nav-item:hover {
+  background: #e0f2fe;
+  color: #2563eb;
+}
+
+.app-sidebar-nav-item:hover .bi {
+  color: #2563eb;
+}
+
+.app-sidebar-nav-item-active {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.app-sidebar-nav-item-active .bi {
+  color: #2563eb;
+}
+
+.app-sidebar-nav-item .bi {
+  font-size: 1.25rem;
+  width: 1.25rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.app-sidebar-nav-label {
+  white-space: nowrap;
+}
+
+.app-sidebar-promo {
+  margin: 16px 12px 24px;
+  padding: 20px;
+  background: #ede9fe;
+  border-radius: 12px;
+}
+
+.app-sidebar-bottom {
+  margin: 16px 12px 24px;
+  padding: 0 12px 24px;
+}
+
+.app-sidebar-bottom-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.app-sidebar-bottom-actions .app-sidebar-nav-item {
+  margin: 0;
+}
+
+.app-sidebar-bottom-actions button.app-sidebar-nav-item {
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.app-sidebar-promo-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-sidebar-promo-title {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.app-sidebar-promo-visual {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-sidebar-promo-placeholder {
+  width: 64px;
+  height: 80px;
+  background: rgba(91, 33, 182, 0.12);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5b21b6;
+  font-size: 1.75rem;
+}

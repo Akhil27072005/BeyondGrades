@@ -1,0 +1,337 @@
+.student-dashboard-page {
+  min-height: 100vh;
+}
+
+.sd-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sd-title {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.sd-subtitle {
+  font-size: 0.95rem;
+}
+
+.sd-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+  overflow: hidden;
+}
+
+.sd-card .card-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.sd-card-title {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.sd-card-subtitle {
+  font-size: 0.8rem;
+  color: #475569;
+}
+
+.sd-muted-btn {
+  border-radius: 999px;
+  border-color: rgba(148, 163, 184, 0.5);
+  color: #4b5563;
+  font-size: 0.8rem;
+}
+
+.sd-muted-btn:hover {
+  background-color: #f3f4ff;
+  border-color: #2563eb;
+  color: #1f2937;
+}
+
+/* Today schedule strip (Section 1) */
+.sd-today-card .card-body {
+  padding-block: 1rem;
+}
+
+.sd-schedule-strip {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.sd-schedule-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.sd-schedule-strip::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.7);
+  border-radius: 999px;
+}
+
+.sd-schedule-chip {
+  min-width: 190px;
+  max-width: 220px;
+  border-radius: 0.9rem;
+  padding: 0.55rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  background-color: #eef2ff;
+}
+
+.sd-schedule-chip--deadline {
+  background-color: #fee2e2;
+}
+
+.sd-schedule-chip--event {
+  background-color: #e0f2fe;
+}
+
+.sd-schedule-chip--task {
+  background-color: #dcfce7;
+}
+
+.sd-schedule-empty {
+  font-size: 0.85rem;
+}
+
+.sd-chip-time {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.sd-chip-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.sd-chip-meta {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+/* Applications board (Section 5) */
+.sd-applications-tabs .nav-link {
+  border-radius: 999px;
+  padding-inline: 0.75rem;
+  font-size: 0.78rem;
+}
+
+.sd-applications-tabs .nav-link.active {
+  background-color: #2563eb;
+}
+
+.sd-application-card {
+  border-radius: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+}
+
+.sd-app-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 8px 18px rgba(79, 70, 229, 0.6);
+}
+
+.sd-app-title {
+  font-weight: 600;
+}
+
+.sd-app-company {
+  font-size: 0.8rem;
+}
+
+.sd-status-badge {
+  border-radius: 999px;
+  font-size: 0.7rem;
+  padding-inline: 0.6rem;
+}
+
+.sd-status-applied {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+}
+
+.sd-status-interviewing {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+}
+
+.sd-status-offer {
+  background-color: #dcfce7 !important;
+  color: #15803d !important;
+}
+
+.sd-btn-compact {
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.1;
+}
+
+.sd-btn-primary {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.sd-btn-primary:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+}
+
+.sd-btn-outline {
+  border-color: rgba(37, 99, 235, 0.55) !important;
+  color: #2563eb !important;
+}
+
+.sd-btn-outline:hover {
+  background-color: rgba(37, 99, 235, 0.08) !important;
+  border-color: #2563eb !important;
+  color: #1d4ed8 !important;
+}
+
+.sd-empty-state h5 {
+  font-weight: 600;
+}
+
+/* Analytics (Section 2) */
+.sd-analytics-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sd-metric-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 2fr) auto;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sd-metric-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.sd-metric-caption {
+  font-size: 0.75rem;
+}
+
+.sd-metric-bar-wrapper {
+  height: 6px;
+  border-radius: 999px;
+  background-color: #e5e7eb;
+  overflow: hidden;
+}
+
+.sd-metric-bar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+}
+
+.sd-metric-value {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Activity chart (Section 7) */
+.sd-activity-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  height: 140px;
+}
+
+.sd-activity-column {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.sd-activity-bar {
+  width: 30%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #2563eb, #60a5fa);
+}
+
+.sd-activity-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.sd-activity-range {
+  font-size: 0.75rem;
+}
+
+.sd-activity-summary {
+  font-size: 0.85rem;
+}
+
+/* Requests / recommended jobs (Section 4) */
+.sd-request-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sd-request-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+}
+
+.sd-request-row:last-child {
+  border-bottom: none;
+}
+
+.sd-request-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sd-request-meta {
+  font-size: 0.8rem;
+}
+
+.sd-request-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.sd-link-muted {
+  color: #6b7280;
+}
+
+.sd-link-muted:hover {
+  color: #2563eb;
+}
+
+@media (max-width: 991.98px) {
+  .sd-card {
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+  }
+}
+

@@ -1,0 +1,154 @@
+/* Recommended Jobs page – scoped styles */
+
+.student-jobs-page {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.student-jobs-page .sj-page-title {
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.02em;
+}
+
+.student-jobs-page .sj-page-subtitle {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.student-jobs-page .sj-badge-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1d4ed8;
+  background: #dbeafe;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+.student-jobs-page .sj-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #22c55e;
+  display: inline-block;
+}
+
+/* Job cards */
+.student-jobs-page .sj-job-card {
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.student-jobs-page .sj-job-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+.student-jobs-page .sj-job-card .card-body {
+  padding: 1.25rem 1.4rem 1.1rem;
+}
+
+.student-jobs-page .sj-job-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.student-jobs-page .sj-job-title {
+  color: #0f172a;
+}
+
+.student-jobs-page .sj-job-company {
+  font-size: 0.8rem;
+}
+
+.student-jobs-page .sj-job-domain-badge,
+.student-jobs-page .sj-job-location-badge {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: #f8fafc !important;
+}
+
+.student-jobs-page .sj-job-sample-badge {
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.student-jobs-page .sj-match-badge {
+  min-width: 64px;
+}
+
+.student-jobs-page .sj-match-pill {
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  background: #ecfdf3;
+  color: #166534;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.student-jobs-page .sj-job-description {
+  font-size: 0.9rem;
+  color: #475569 !important;
+}
+
+.student-jobs-page .sj-why-match {
+  font-size: 0.8rem;
+}
+
+.student-jobs-page .sj-why-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.15);
+}
+
+.student-jobs-page .sj-why-title {
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.8rem;
+}
+
+.student-jobs-page .sj-why-list li + li {
+  margin-top: 0.15rem;
+}
+
+.student-jobs-page .sj-btn-apply {
+  font-weight: 600;
+  border-radius: 999px;
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.student-jobs-page .sj-btn-apply:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.student-jobs-page .sj-btn-secondary {
+  border-radius: 999px;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.student-jobs-page .sj-btn-secondary:hover {
+  background-color: rgba(37, 99, 235, 0.06);
+  border-color: #2563eb;
+  color: #1d4ed8;
+}
+
+.student-jobs-page .sj-empty-card {
+  border-radius: 16px;
+  border: 1px dashed rgba(148, 163, 184, 0.7);
+  background: rgba(248, 250, 252, 0.9);
+}
+

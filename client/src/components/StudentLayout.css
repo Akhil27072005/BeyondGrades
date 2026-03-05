@@ -1,0 +1,14 @@
+/* Student layout – sidebar + main; all classes prefixed to avoid conflicts */
+
+.student-layout {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f9ff 0%, #f5faff 50%, #fafcff 100%);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.student-layout-main {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-x: hidden;
+}

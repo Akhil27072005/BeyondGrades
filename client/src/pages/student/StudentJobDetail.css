@@ -1,0 +1,159 @@
+.student-job-detail-page {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.student-job-detail-page .sjd-back-link {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.student-job-detail-page .sjd-back-link:hover {
+  text-decoration: underline;
+}
+
+.student-job-detail-page .sjd-title {
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.student-job-detail-page .sjd-subtitle {
+  font-size: 0.9rem;
+}
+
+.student-job-detail-page .sjd-job-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.student-job-detail-page .sjd-pill-badge {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: #f8fafc !important;
+  font-size: 0.75rem;
+}
+
+.student-job-detail-page .sjd-pill-preview {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.student-job-detail-page .sjd-match-card {
+  padding: 0.4rem 0.9rem;
+  border-radius: 14px;
+  background: #ecfdf3;
+  text-align: right;
+}
+
+.student-job-detail-page .sjd-match-label {
+  font-size: 0.75rem;
+  color: #166534;
+}
+
+.student-job-detail-page .sjd-match-score {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #166534;
+}
+
+.student-job-detail-page .sjd-apply-btn {
+  margin-top: 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.student-job-detail-page .sjd-apply-btn:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.student-job-detail-page .sjd-card {
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+.student-job-detail-page .sjd-section-title {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #64748b;
+}
+
+.student-job-detail-page .sjd-section-subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.student-job-detail-page .sjd-body-text {
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.student-job-detail-page .sjd-body-list {
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.student-job-detail-page .sjd-body-list li + li {
+  margin-top: 0.15rem;
+}
+
+.student-job-detail-page .sjd-reasons-list {
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.student-job-detail-page .sjd-reasons-list li + li {
+  margin-top: 0.15rem;
+}
+
+.student-job-detail-page .sjd-pill-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+}
+
+.student-job-detail-page .sjd-skill-name {
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.student-job-detail-page .sjd-skill-level-pill {
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.7rem;
+  text-transform: capitalize;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.student-job-detail-page .sjd-skill-weight {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.student-job-detail-page .sjd-chip-badge {
+  border-radius: 999px;
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  font-size: 0.75rem;
+  background: #dbeafe !important;
+  color: #1e40af !important;
+}
+
