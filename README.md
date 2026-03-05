@@ -8,7 +8,8 @@
 ## 🎥 Demo & Access
 
 **Demo Login:**  
-- **User:** demo@beyondgrades.com  
+- **User:** rajesh.kumar@iitd.ac.in
+- **Password:** password123 
 
 | Resource | Link |
 |----------|------|
@@ -67,25 +68,4 @@ The platform features a **proprietary matching engine** designed to help recruit
 
 ---
 
-## 🖼️ Feature Screenshots
-
-| Feature | Visual | Description |
-|---------|-----------|------------|
-| Recruiter Shortlist View | ![Recruiter Shortlist](https://res.cloudinary.com/dqcov9axv/image/upload/w_700,h_450/v1760874796/55b9574a-6ef8-4345-af1a-44251a5a7ea9.png) | Ranked candidates with match score and detailed breakdown |
-| Student Profile – Project Showcase | ![Student Profile](https://res.cloudinary.com/dqcov9axv/image/upload/w_700,h_450/v1760874600/69fd27c7-aada-4a01-9188-2fd77185234b.png) | Auto-tagging, project media, GitHub/Demo links |
-| Skill Distribution Analytics | ![Skill Distribution](https://res.cloudinary.com/dqcov9axv/image/upload/w_700,h_450/0b74bd43-9db5-4344-b5f9-7bc27fdd73b2.png) | Bar chart comparing skills across colleges or batches |
-| Job Post Creation Form | ![Job Post Creation](https://res.cloudinary.com/dqcov9axv/image/upload/w_700,h_450/v1760874770/18ad9184-dad8-482d-a128-27f060b5a259.png) | Input form for skills, proficiency, and domain classification |
-
----
-
-
-## ⚠️ About the Code
-
-The source code for **Beyond Grades** is **not publicly available** in this repository due to the following reasons:
-
-- **Privacy & Security:** The platform handles sensitive student and recruiter data. Making the full code public could expose private information or credentials.  
-- **Proprietary Logic:** The matching engine and scoring algorithms are proprietary and form the core intellectual property of the platform.  
-- **Deployment & Integration:** The system relies on multiple services (Python microservice, Cloudinary storage, MongoDB Atlas, OAuth integrations) that require secure environment configurations.
-
-> While the complete code is not shared publicly, we provide a **live demo, screenshots, and detailed walkthroughs** to illustrate the platform’s functionality and capabilities.
 
