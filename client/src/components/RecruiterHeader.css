@@ -1,0 +1,203 @@
+/* Recruiter header – common across all recruiter pages, purple palette */
+.recruiter-header {
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.recruiter-header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.recruiter-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.recruiter-header-logo:hover {
+  color: #6d28d9;
+}
+
+.recruiter-header-logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+  color: #fff;
+}
+
+.recruiter-header-logo-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.recruiter-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.recruiter-header-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #64748b;
+  transition: color 0.2s, background 0.2s;
+}
+
+.recruiter-header-nav-link:hover {
+  color: #7c3aed;
+  background: #f5f3ff;
+}
+
+.recruiter-header-nav-link.active {
+  color: #7c3aed;
+  background: #f5f3ff;
+}
+
+.recruiter-header-nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.recruiter-header-nav-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.recruiter-header-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.recruiter-header-user {
+  position: relative;
+}
+
+.recruiter-header-user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #334155;
+  transition: background 0.2s;
+}
+
+.recruiter-header-user-trigger:hover {
+  background: #f1f5f9;
+}
+
+.recruiter-header-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recruiter-header-user-name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recruiter-header-chevron {
+  font-size: 0.5rem;
+  color: #64748b;
+  transition: transform 0.2s;
+}
+
+.recruiter-header-chevron.open {
+  transform: rotate(180deg);
+}
+
+.recruiter-header-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 180px;
+  padding: 0.25rem 0;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+}
+
+.recruiter-header-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.recruiter-header-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  color: #334155;
+  text-decoration: none;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.recruiter-header-dropdown-item:hover {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+@media (max-width: 768px) {
+  .recruiter-header-inner {
+    flex-wrap: wrap;
+  }
+  .recruiter-header-nav {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

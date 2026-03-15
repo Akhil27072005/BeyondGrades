@@ -1,0 +1,272 @@
+/* Recruiter dashboard redesign (purple palette) */
+.recruiter-dashboard-page {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: #f8fafc;
+  min-height: 100%;
+  padding: 1.5rem 0 2rem;
+}
+
+.recruiter-dashboard-container {
+  max-width: 1120px;
+}
+
+/* Override Bootstrap primary so Post new job is purple */
+.recruiter-dashboard-page .btn.rd-primary-btn,
+.recruiter-dashboard-page .rd-primary-btn.btn-primary {
+  background-color: #7c3aed !important;
+  border-color: #7c3aed !important;
+  font-weight: 600;
+}
+.recruiter-dashboard-page .btn.rd-primary-btn:hover,
+.recruiter-dashboard-page .btn.rd-primary-btn:focus,
+.recruiter-dashboard-page .rd-primary-btn.btn-primary:hover,
+.recruiter-dashboard-page .rd-primary-btn.btn-primary:focus {
+  background-color: #6d28d9 !important;
+  border-color: #6d28d9 !important;
+}
+
+.rd-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.rd-subtitle {
+  color: #64748b;
+  margin: 0.25rem 0 0 0;
+  font-size: 0.9rem;
+}
+
+.rd-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.rd-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1rem 0.75rem 1rem;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.rd-card-title {
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.rd-card-link {
+  color: #7c3aed;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.rd-card-link:hover { text-decoration: underline; }
+
+/* Overview */
+.rd-overview-body {
+  padding: 1rem;
+}
+.rd-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.rd-stat {
+  border-radius: 12px;
+  padding: 0.85rem 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 1px solid rgba(124, 58, 237, 0.10);
+}
+.rd-stat-blue { background: #eef2ff; }
+.rd-stat-amber { background: #fff7ed; border-color: rgba(245, 158, 11, 0.18); }
+.rd-stat-green { background: #ecfdf5; border-color: rgba(16, 185, 129, 0.18); }
+.rd-stat-rose { background: #fff1f2; border-color: rgba(244, 63, 94, 0.18); }
+
+.rd-stat-number {
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+  color: #0f172a;
+}
+.rd-stat-label {
+  font-size: 0.85rem;
+  color: #475569;
+  margin-top: 0.35rem;
+}
+.rd-stat-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.12);
+}
+.rd-stat-amber .rd-stat-icon { color: #b45309; background: rgba(245, 158, 11, 0.14); }
+.rd-stat-green .rd-stat-icon { color: #047857; background: rgba(16, 185, 129, 0.14); }
+.rd-stat-rose .rd-stat-icon { color: #be123c; background: rgba(244, 63, 94, 0.14); }
+
+/* Acquisitions */
+.rd-acq-body {
+  padding: 1rem;
+}
+.rd-acq-bar {
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  background: #e5e7eb;
+}
+.rd-acq-seg { height: 100%; }
+.rd-acq-app { background: #7c3aed; }
+.rd-acq-short { background: #60a5fa; }
+.rd-acq-rej { background: #f43f5e; }
+.rd-acq-hold { background: #f59e0b; }
+.rd-acq-onb { background: #10b981; }
+
+.rd-acq-legend {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+}
+.rd-legend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: #334155;
+  font-size: 0.9rem;
+}
+.rd-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  margin-right: 0.55rem;
+  flex-shrink: 0;
+}
+.rd-legend-left {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Calendar */
+.rd-cal-body {
+  padding: 1rem;
+}
+.rd-cal-section {
+  margin-bottom: 0.9rem;
+}
+.rd-cal-section:last-child { margin-bottom: 0; }
+.rd-cal-heading {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+}
+.rd-cal-item {
+  display: grid;
+  grid-template-columns: 4px 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.55rem 0;
+}
+.rd-cal-line { width: 4px; height: 34px; border-radius: 99px; background: #a78bfa; }
+.rd-cal-title { font-weight: 650; color: #0f172a; font-size: 0.9rem; margin: 0; }
+.rd-cal-meta { color: #64748b; font-size: 0.82rem; margin: 0.1rem 0 0 0; }
+.rd-cal-date { color: #94a3b8; font-size: 0.8rem; font-weight: 600; }
+
+/* Recent jobs */
+.rd-jobs-body {
+  padding: 0.25rem 0.75rem 0.75rem 0.75rem;
+}
+.rd-jobs-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  font-size: 0.9rem;
+}
+.rd-jobs-table thead th {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  padding: 0.75rem 0.75rem 0.25rem 0.75rem;
+}
+.rd-job-row td {
+  background: #fff;
+  border-top: 1px solid #eef2f7;
+  border-bottom: 1px solid #eef2f7;
+  padding: 0.85rem 0.75rem;
+}
+.rd-job-row td:first-child {
+  border-left: 1px solid #eef2f7;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.rd-job-row td:last-child {
+  border-right: 1px solid #eef2f7;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.rd-job-title-link {
+  color: #0f172a;
+  font-weight: 650;
+  text-decoration: none;
+}
+.rd-job-title-link:hover { color: #7c3aed; }
+.rd-job-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 650;
+  background: #ede9fe;
+  color: #6d28d9;
+}
+.rd-job-location { color: #64748b; }
+.rd-job-apps { color: #0f172a; font-weight: 650; }
+
+/* Activity */
+.rd-activity-body { padding: 0.9rem 1rem; }
+.rd-activity-item {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+.rd-activity-item:last-child { border-bottom: none; }
+.rd-activity-ico {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  background: rgba(124, 58, 237, 0.12);
+  color: #7c3aed;
+  display: grid;
+  place-items: center;
+}
+.rd-activity-text { color: #0f172a; font-weight: 600; font-size: 0.9rem; }
+.rd-activity-time { color: #94a3b8; font-size: 0.8rem; font-weight: 650; white-space: nowrap; }
+.rd-empty {
+  color: #94a3b8;
+  font-style: italic;
+  margin: 0;
+  padding: 0.75rem 0;
+}
+
+@media (min-width: 992px) {
+  .rd-overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rd-acq-legend { grid-template-columns: 1fr; }
+}

@@ -28,6 +28,8 @@ const RecommendedJobs = () => {
   const [profileStatus, setProfileStatus] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [appliedIds, setAppliedIds] = useState(new Set())
+  const [applyingId, setApplyingId] = useState(null)
 
   useEffect(() => {
     const fetchRecommendations = async () => {
@@ -53,6 +55,20 @@ const RecommendedJobs = () => {
 
     fetchRecommendations()
   }, [])
+
+  const handleApply = async (jobId, isSample) => {
+    if (isSample || !jobId || applyingId) return
+    setApplyingId(jobId)
+    setError('')
+    try {
+      await studentsAPI.applyToJob(jobId)
+      setAppliedIds((prev) => new Set([...prev, jobId]))
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to apply')
+    } finally {
+      setApplyingId(null)
+    }
+  }
 
   if (loading) {
     return (
@@ -128,7 +144,7 @@ const RecommendedJobs = () => {
                             </Badge>
                             <Badge bg="light" text="dark" className="sj-job-location-badge">
                               <i className="bi bi-geo-alt me-1" aria-hidden />
-                              {recommendation.job.locationType}
+                              {recommendation.job.location || recommendation.job.locationType || '—'}
                             </Badge>
                             {isSample && (
                               <Badge bg="primary" className="sj-job-sample-badge">
@@ -150,8 +166,18 @@ const RecommendedJobs = () => {
                       </p>
 
                       <div className="d-flex gap-2 mt-auto pt-1">
-                        <Button variant="primary" size="sm" className="flex-grow-1 sj-btn-apply">
-                          Apply now
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          className="flex-grow-1 sj-btn-apply"
+                          onClick={() => handleApply(recommendation.job.id, recommendation.isSample)}
+                          disabled={recommendation.isSample || applyingId === recommendation.job.id || appliedIds.has(recommendation.job.id)}
+                        >
+                          {applyingId === recommendation.job.id
+                            ? 'Applying…'
+                            : appliedIds.has(recommendation.job.id)
+                              ? 'Applied'
+                              : 'Apply now'}
                         </Button>
                         <Button
                           as={Link}

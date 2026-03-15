@@ -2,11 +2,12 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { auth, requireRole } = require('../middleware/auth');
-const { validateStudentSignup, validateRecruiterSignup, validateLogin } = require('../middleware/validation');
+const { validateStudentSignup, validateRecruiterSignup, validateRecruiterSignupFull, validateLogin } = require('../middleware/validation');
 const Student = require('../models/Student');
 const Recruiter = require('../models/Recruiter');
+const Company = require('../models/Company');
 const College = require('../models/College');
-const { sendVerificationEmail } = require('../services/emailService');
+const { sendVerificationEmail, sendTeamMemberWelcomeEmail, DEFAULT_TEAM_PASSWORD } = require('../services/emailService');
 
 const router = express.Router();
 
@@ -102,7 +103,121 @@ router.post('/signup', validateStudentSignup, async (req, res) => {
   }
 });
 
-// Recruiter signup
+// Recruiter signup (full multi-step: company + team + creator)
+router.post('/recruiter-signup-full', validateRecruiterSignupFull, async (req, res) => {
+  try {
+    const {
+      companyType,
+      state,
+      companyName,
+      companySize,
+      address,
+      country,
+      city,
+      companyWebsite,
+      companyDescription,
+      team = [],
+      name,
+      email,
+      password
+    } = req.body;
+
+    const existingRecruiter = await Recruiter.findOne({ email });
+    if (existingRecruiter) {
+      return res.status(400).json({ message: 'A recruiter with this email already exists' });
+    }
+
+    const company = new Company({
+      companyType,
+      state,
+      name: companyName,
+      type: companyType,
+      size: companySize || undefined,
+      address: address || undefined,
+      country: country || undefined,
+      city: city || undefined,
+      website: companyWebsite || undefined,
+      description: companyDescription || undefined,
+      verified: false
+    });
+    await company.save();
+
+    const saltRounds = 10;
+    const creatorPasswordHash = await bcrypt.hash(password, saltRounds);
+
+    const creator = new Recruiter({
+      companyId: company._id,
+      companyName: company.name,
+      name,
+      email,
+      passwordHash: creatorPasswordHash,
+      companyWebsite: companyWebsite || undefined,
+      companySize: companySize || undefined,
+      companyDescription: companyDescription || undefined,
+      verified: false
+    });
+    await creator.save();
+
+    const defaultPasswordHash = await bcrypt.hash(DEFAULT_TEAM_PASSWORD, saltRounds);
+    const loginUrl = `${process.env.FRONTEND_URL || ''}/login`;
+
+    for (const member of team) {
+      const memberEmail = (member.email || '').trim().toLowerCase();
+      if (!memberEmail) continue;
+
+      const existingMember = await Recruiter.findOne({ email: memberEmail });
+      if (existingMember) {
+        continue;
+      }
+
+      const memberName = [member.firstName, member.lastName].filter(Boolean).join(' ') || memberEmail;
+      const teamRecruiter = new Recruiter({
+        companyId: company._id,
+        companyName: company.name,
+        name: memberName,
+        email: memberEmail,
+        passwordHash: defaultPasswordHash,
+        verified: false
+      });
+      await teamRecruiter.save();
+
+      try {
+        await sendTeamMemberWelcomeEmail(
+          memberEmail,
+          member.firstName || '',
+          member.lastName || '',
+          company.name,
+          loginUrl
+        );
+      } catch (emailErr) {
+        console.error('Team member welcome email failed:', emailErr);
+      }
+    }
+
+    const token = jwt.sign(
+      { id: creator._id, role: 'recruiter' },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN }
+    );
+
+    res.status(201).json({
+      message: 'Company and account created successfully. Pending admin verification.',
+      token,
+      user: {
+        id: creator._id,
+        name: creator.name,
+        email: creator.email,
+        role: 'recruiter',
+        verified: creator.verified
+      }
+    });
+  } catch (error) {
+    console.error('Recruiter signup full error:', error);
+    res.status(500).json({ message: 'Server error during signup' });
+  }
+});
+
+// Recruiter signup (legacy single form)
 router.post('/recruiter-signup', validateRecruiterSignup, async (req, res) => {
   try {
     const { name, email, password, companyName, companyWebsite, companySize, industry, companyDescription, contactPhone, jobTitle, linkedInUrl } = req.body;

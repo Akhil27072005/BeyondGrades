@@ -1,0 +1,177 @@
+/* Profile search – purple (recruiter) or blue (student) */
+.profile-search-page {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  min-height: 100%;
+  padding: 1.5rem 0 2rem;
+}
+
+.profile-search-purple {
+  background: #f8fafc;
+}
+
+.profile-search-blue {
+  background: #f8fafc;
+}
+
+.profile-search-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.profile-search-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.35rem 0;
+}
+
+.profile-search-desc {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0 0 1.5rem 0;
+}
+
+.profile-search-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-search-input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.profile-search-input:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.profile-search-blue .profile-search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.profile-search-btn {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #fff;
+  background: #7c3aed;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.profile-search-btn:hover:not(:disabled) {
+  background: #6d28d9;
+}
+
+.profile-search-blue .profile-search-btn {
+  background: #2563eb;
+}
+
+.profile-search-blue .profile-search-btn:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.profile-search-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.profile-search-results {
+  margin-top: 0.5rem;
+}
+
+.profile-search-section {
+  margin-bottom: 1.5rem;
+}
+
+.profile-search-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+  margin: 0 0 0.75rem 0;
+}
+
+.profile-search-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-search-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.profile-search-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.profile-search-item-name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.profile-search-item-meta {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.profile-search-item-desc {
+  margin-top: 0.25rem;
+}
+
+.profile-search-item-btn {
+  flex-shrink: 0;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #7c3aed;
+  background: transparent;
+  border: 1px solid #7c3aed;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.profile-search-item-btn:hover {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.profile-search-blue .profile-search-item-btn {
+  color: #2563eb;
+  border-color: #2563eb;
+}
+
+.profile-search-blue .profile-search-item-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.profile-search-empty {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 1rem 0 0 0;
+}

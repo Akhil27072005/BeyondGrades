@@ -1,22 +1,23 @@
 const mongoose = require('mongoose');
 
 const recruiterSchema = new mongoose.Schema({
-  companyName: { type: String, required: true },
+  companyId: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' },
+  companyName: { type: String },
   name: { type: String, required: true },
-  email: { 
-    type: String, 
-    required: true, 
+  email: {
+    type: String,
+    required: true,
     unique: true,
     lowercase: true,
     trim: true
   },
   passwordHash: { type: String, required: true },
   companyWebsite: { type: String },
-  companySize: { type: String }, // e.g. "1-10", "11-50", "51-200"
-  industry: { type: String }, // e.g. "Technology", "Finance"
+  companySize: { type: String },
+  industry: { type: String },
   companyDescription: { type: String },
   contactPhone: { type: String },
-  jobTitle: { type: String }, // recruiter's role, e.g. "HR Manager"
+  jobTitle: { type: String },
   linkedInUrl: { type: String },
   verified: { type: Boolean, default: false },
   postedJobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }]

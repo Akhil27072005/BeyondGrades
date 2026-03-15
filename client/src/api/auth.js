@@ -10,12 +10,18 @@ export const authAPI = {
     return response.data
   },
 
-  // Recruiter signup
+  // Recruiter signup (legacy single form)
   signupRecruiter: async (userData) => {
     const response = await apiClient.post('/auth/recruiter-signup', {
       ...userData,
       role: 'recruiter'
     })
+    return response.data
+  },
+
+  // Recruiter signup (multi-step: company + team + creator)
+  signupRecruiterFull: async (payload) => {
+    const response = await apiClient.post('/auth/recruiter-signup-full', payload)
     return response.data
   },
 

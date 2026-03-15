@@ -1,12 +1,56 @@
 const express = require('express');
-const { auth } = require('../middleware/auth');
+const { auth, requireRole } = require('../middleware/auth');
 const { getGridFS } = require('../config/gridfs');
 const Notification = require('../models/Notification');
 const Student = require('../models/Student');
 const Job = require('../models/Job');
 const College = require('../models/College');
+const Recruiter = require('../models/Recruiter');
+const Company = require('../models/Company');
 
 const router = express.Router();
+
+// Search profiles by name (role-based: students search recruiters/companies; recruiters search students)
+router.get('/search', auth, async (req, res) => {
+  try {
+    const q = (req.query.q || '').trim();
+    const role = req.user.role;
+
+    if (!q || q.length < 2) {
+      return res.json({ students: [], recruiters: [], companies: [] });
+    }
+
+    const regex = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+
+    if (role === 'recruiter') {
+      const students = await Student.find({
+        'visibility.public': true,
+        name: regex
+      })
+        .select('_id name yearOfGraduation collegeId skills')
+        .populate('collegeId', 'name')
+        .limit(20)
+        .lean();
+      return res.json({ students: students.map(s => ({ ...s, id: s._id, type: 'student' })) });
+    }
+
+    if (role === 'student') {
+      const [recruiters, companies] = await Promise.all([
+        Recruiter.find({ name: regex }).select('_id name companyName jobTitle').limit(20).lean(),
+        Company.find({ name: regex }).select('_id name description website size').limit(20).lean()
+      ]);
+      return res.json({
+        recruiters: recruiters.map(r => ({ ...r, id: r._id, type: 'recruiter' })),
+        companies: companies.map(c => ({ ...c, id: c._id, type: 'company' }))
+      });
+    }
+
+    res.json({ students: [], recruiters: [], companies: [] });
+  } catch (error) {
+    console.error('Search error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 // Get notifications
 router.get('/notifications/me', auth, async (req, res) => {

@@ -65,6 +65,33 @@ const validateJob = [
   body('requiredSkills').isArray({ min: 1 }).withMessage('At least one required skill needed'),
   body('requiredSkills.*.name').trim().notEmpty().withMessage('Skill name required'),
   body('requiredSkills.*.requiredLevel').isIn(['beginner', 'intermediate', 'advanced', 'expert']).withMessage('Valid skill level required'),
+  body('industry').optional({ values: 'falsy' }).trim(),
+  body('contactPerson').optional({ values: 'falsy' }).trim(),
+  body('contactEmail').optional({ values: 'falsy' }).isEmail().normalizeEmail().withMessage('Valid contact email if provided'),
+  body('contactPhone').optional({ values: 'falsy' }).trim(),
+  body('jobType').optional({ values: 'falsy' }).trim(),
+  body('jobDuration').optional({ values: 'falsy' }).trim(),
+  body('location').optional({ values: 'falsy' }).trim(),
+  handleValidationErrors
+];
+
+const validateRecruiterSignupFull = [
+  body('companyType').trim().notEmpty().withMessage('Company type required'),
+  body('state').trim().notEmpty().withMessage('State required'),
+  body('companyName').trim().isLength({ min: 2 }).withMessage('Company name required'),
+  body('companySize').optional({ values: 'falsy' }).trim().notEmpty().withMessage('Company size must be non-empty if provided'),
+  body('address').optional({ values: 'falsy' }).trim(),
+  body('country').optional({ values: 'falsy' }).trim(),
+  body('city').optional({ values: 'falsy' }).trim(),
+  body('companyWebsite').optional({ values: 'falsy' }).isURL().withMessage('Valid website URL required'),
+  body('companyDescription').optional({ values: 'falsy' }).trim().isLength({ max: 2000 }).withMessage('Description too long'),
+  body('team').optional().isArray().withMessage('Team must be an array'),
+  body('team.*.firstName').optional().trim(),
+  body('team.*.lastName').optional().trim(),
+  body('team.*.email').optional().isEmail().normalizeEmail().withMessage('Valid email required for team member'),
+  body('name').trim().isLength({ min: 2 }).withMessage('Your name must be at least 2 characters'),
+  body('email').isEmail().normalizeEmail().withMessage('Valid email required'),
+  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
   handleValidationErrors
 ];
 
@@ -72,6 +99,7 @@ module.exports = {
   handleValidationErrors,
   validateStudentSignup,
   validateRecruiterSignup,
+  validateRecruiterSignupFull,
   validateLogin,
   validateProject,
   validateJob

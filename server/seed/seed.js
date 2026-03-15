@@ -8,10 +8,12 @@ dotenv.config();
 // Import models
 const Student = require('../models/Student');
 const Recruiter = require('../models/Recruiter');
+const Company = require('../models/Company');
 const College = require('../models/College');
 const Job = require('../models/Job');
 const Project = require('../models/Project');
 const Hire = require('../models/Hire');
+const Application = require('../models/Application');
 const Admin = require('../models/Admin');
 const CalendarEvent = require('../models/CalendarEvent');
 
@@ -32,10 +34,12 @@ const seedData = async () => {
     // Clear existing data
     await Student.deleteMany({});
     await Recruiter.deleteMany({});
+    await Company.deleteMany({});
     await College.deleteMany({});
     await Job.deleteMany({});
     await Project.deleteMany({});
     await Hire.deleteMany({});
+    await Application.deleteMany({});
     await Admin.deleteMany({});
     await CalendarEvent.deleteMany({});
 
@@ -442,6 +446,119 @@ const seedData = async () => {
         role: 'iOS Developer',
         contributions: ['UI/UX design', 'API integration', 'Location services'],
         evidenceScore: 0.80
+      },
+      {
+        studentId: createdStudents[3]._id,
+        title: 'CI/CD Pipeline for Microservices',
+        description: 'Designed and implemented a full CI/CD pipeline using Jenkins, Docker, and Kubernetes for automated deployment of microservices.',
+        domainTags: ['devops', 'cloud'],
+        skillTags: ['AWS', 'Docker', 'Kubernetes', 'Python'],
+        repoUrl: 'https://github.com/sneha-patel/cicd-pipeline',
+        role: 'DevOps Engineer',
+        contributions: ['Pipeline design', 'Container orchestration', 'Monitoring setup'],
+        evidenceScore: 0.82
+      },
+      {
+        studentId: createdStudents[4]._id,
+        title: 'REST API for Inventory Management',
+        description: 'Scalable REST API built with Java Spring Boot for inventory management. Features JWT auth, role-based access, and PostgreSQL.',
+        domainTags: ['backend', 'api'],
+        skillTags: ['Java', 'Spring Boot', 'SQL', 'Microservices'],
+        repoUrl: 'https://github.com/vikram-reddy/inventory-api',
+        role: 'Backend Developer',
+        contributions: ['API design', 'Authentication', 'Database schema'],
+        evidenceScore: 0.78
+      },
+      {
+        studentId: createdStudents[5]._id,
+        title: 'Design System Component Library',
+        description: 'Reusable React component library with Storybook, theming, and accessibility (a11y) compliance. Used in production by 3 internal apps.',
+        domainTags: ['frontend', 'ui/ux'],
+        skillTags: ['React', 'JavaScript', 'CSS', 'TypeScript'],
+        repoUrl: 'https://github.com/ananya-gupta/design-system',
+        demoUrl: 'https://ananya-gupta.github.io/design-system',
+        role: 'Frontend Developer',
+        contributions: ['Component design', 'Documentation', 'Accessibility audit'],
+        evidenceScore: 0.88
+      },
+      {
+        studentId: createdStudents[6]._id,
+        title: 'Decentralized Voting DApp',
+        description: 'Ethereum-based decentralized voting application using Solidity smart contracts. Includes Web3 frontend and MetaMask integration.',
+        domainTags: ['blockchain', 'web3'],
+        skillTags: ['Solidity', 'Ethereum', 'Web3', 'JavaScript'],
+        repoUrl: 'https://github.com/rahul-verma/voting-dapp',
+        role: 'Blockchain Developer',
+        contributions: ['Smart contract development', 'Frontend integration', 'Testing'],
+        evidenceScore: 0.81
+      },
+      {
+        studentId: createdStudents[7]._id,
+        title: 'Network Intrusion Detection System',
+        description: 'Python-based IDS that analyzes network traffic and flags anomalies. Uses machine learning for threat classification.',
+        domainTags: ['cybersecurity', 'networking'],
+        skillTags: ['Cybersecurity', 'Python', 'Network Security', 'Linux'],
+        repoUrl: 'https://github.com/kavya-nair/network-ids',
+        role: 'Security Engineer',
+        contributions: ['Traffic analysis', 'ML model training', 'Alert system'],
+        evidenceScore: 0.79
+      },
+      {
+        studentId: createdStudents[8]._id,
+        title: '2D Platformer Game',
+        description: 'Cross-platform 2D platformer built with Unity and C#. Features procedural level generation, particle effects, and mobile touch controls.',
+        domainTags: ['game development', 'unity'],
+        skillTags: ['Unity', 'C#', 'Game Design', '3D Modeling'],
+        repoUrl: 'https://github.com/arjun-mehta/platformer-game',
+        demoUrl: 'https://arjun-mehta.itch.io/platformer',
+        role: 'Game Developer',
+        contributions: ['Core gameplay', 'Level design', 'UI and VFX'],
+        evidenceScore: 0.84
+      },
+      {
+        studentId: createdStudents[9]._id,
+        title: 'NLP Sentiment Analysis Pipeline',
+        description: 'End-to-end NLP pipeline for sentiment analysis using PyTorch and Hugging Face. Deployed as a REST API with batch inference support.',
+        domainTags: ['data science', 'machine learning', 'nlp'],
+        skillTags: ['Python', 'Machine Learning', 'Deep Learning', 'TensorFlow', 'PyTorch'],
+        repoUrl: 'https://github.com/sakshi-joshi/sentiment-nlp',
+        role: 'ML Engineer',
+        contributions: ['Model fine-tuning', 'API deployment', 'Evaluation metrics'],
+        evidenceScore: 0.87
+      },
+      {
+        studentId: createdStudents[10]._id,
+        title: 'Real-time Collaborative Whiteboard',
+        description: 'Web-based real-time whiteboard with multiple users, WebSockets, and canvas drawing. Built with React, Node.js, and Socket.io.',
+        domainTags: ['web development', 'real-time'],
+        skillTags: ['JavaScript', 'React', 'Node.js', 'MongoDB', 'Express'],
+        repoUrl: 'https://github.com/rohan-kapoor/collab-whiteboard',
+        demoUrl: 'https://collab-whiteboard.demo.app',
+        role: 'Full Stack Developer',
+        contributions: ['Real-time sync', 'Canvas engine', 'User presence'],
+        evidenceScore: 0.83
+      },
+      {
+        studentId: createdStudents[11]._id,
+        title: 'Streaming ETL Pipeline with Spark',
+        description: 'Real-time ETL pipeline using Apache Spark Streaming and Kafka. Processes clickstream data and loads into a data warehouse.',
+        domainTags: ['data engineering', 'big data'],
+        skillTags: ['Python', 'Apache Spark', 'Hadoop', 'SQL', 'Kafka'],
+        repoUrl: 'https://github.com/neha-agarwal/streaming-etl',
+        role: 'Data Engineer',
+        contributions: ['Pipeline design', 'Kafka consumers', 'Schema evolution'],
+        evidenceScore: 0.86
+      },
+      {
+        studentId: createdStudents[12]._id,
+        title: 'Multi-Cloud Infrastructure as Code',
+        description: 'Terraform and Ansible playbooks for provisioning and configuring AWS and GCP resources. Includes monitoring and auto-scaling.',
+        domainTags: ['cloud', 'devops', 'infrastructure'],
+        skillTags: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'Python'],
+        repoUrl: 'https://github.com/vikash-kumar/multi-cloud-iac',
+        role: 'Cloud Engineer',
+        contributions: ['Terraform modules', 'CI integration', 'Cost optimization'],
+        evidenceScore: 0.85
       }
     ];
 
@@ -459,9 +576,9 @@ const seedData = async () => {
     await Student.bulkSave(createdStudents);
     console.log('🔗 Linked projects to students');
 
-    // Create recruiters
+    // Create recruiters and companies
     const recruiterPassword = await bcrypt.hash('password123', 10);
-    const recruiters = [
+    const recruiterSeed = [
       {
         name: 'John Smith',
         email: 'john.smith@techcorp.com',
@@ -506,6 +623,42 @@ const seedData = async () => {
       }
     ];
 
+    // Derive companies from recruiter seed (one per companyName)
+    const companySeedMap = new Map();
+    for (const r of recruiterSeed) {
+      if (!companySeedMap.has(r.companyName)) {
+        companySeedMap.set(r.companyName, {
+          companyType: 'Private',
+          state: 'N/A',
+          name: r.companyName,
+          type: 'Private',
+          size: r.companySize || undefined,
+          address: undefined,
+          country: undefined,
+          city: undefined,
+          website: r.companyWebsite || undefined,
+          description: r.companyDescription || undefined,
+          verified: r.verified
+        });
+      }
+    }
+
+    const companies = Array.from(companySeedMap.values());
+    const createdCompanies = await Company.insertMany(companies);
+    console.log('🏢 Created companies');
+
+    // Map company name to _id
+    const companyIdByName = {};
+    createdCompanies.forEach((c) => {
+      companyIdByName[c.name] = c._id;
+    });
+
+    // Attach companyId to recruiters
+    const recruiters = recruiterSeed.map(r => ({
+      ...r,
+      companyId: companyIdByName[r.companyName]
+    }));
+
     const createdRecruiters = await Recruiter.insertMany(recruiters);
     console.log('💼 Created recruiters');
 
@@ -513,6 +666,7 @@ const seedData = async () => {
     const jobs = [
       {
         recruiterId: createdRecruiters[0]._id,
+        companyId: createdRecruiters[0].companyId,
         title: 'Senior Software Engineer',
         description: 'We are looking for a Senior Software Engineer to join our team. You will be responsible for developing and maintaining our web applications using modern technologies.',
         domain: 'web development',
@@ -528,10 +682,18 @@ const seedData = async () => {
         shortlistSettings: {
           topN: 10,
           weights: { domain: 0.30, skill: 0.45, expertise: 0.25 }
-        }
+        },
+        industry: 'Technology',
+        contactPerson: 'John Smith',
+        contactEmail: 'john.smith@techcorp.com',
+        contactPhone: '+1-555-0100',
+        jobType: 'Full-time',
+        jobDuration: '1 year',
+        location: 'San Francisco'
       },
       {
         recruiterId: createdRecruiters[1]._id,
+        companyId: createdRecruiters[1].companyId,
         title: 'Data Scientist',
         description: 'Join our data science team to build machine learning models and analyze large datasets. Experience with Python, ML frameworks, and statistical analysis required.',
         domain: 'data science',
@@ -547,7 +709,13 @@ const seedData = async () => {
         shortlistSettings: {
           topN: 8,
           weights: { domain: 0.30, skill: 0.45, expertise: 0.25 }
-        }
+        },
+        industry: 'Technology',
+        contactPerson: 'Sarah Johnson',
+        contactEmail: 'sarah.johnson@innovate.com',
+        jobType: 'Full-time',
+        jobDuration: '6 months',
+        location: 'Remote'
       }
     ];
 
@@ -564,6 +732,19 @@ const seedData = async () => {
     }
     await Recruiter.bulkSave(createdRecruiters);
     console.log('🔗 Linked jobs to recruiters');
+
+    const now = new Date();
+    const daysAgo = (d) => new Date(now.getTime() - d * 24 * 60 * 60 * 1000);
+    const job0 = createdJobs[0]._id;
+    const applications = [
+      { studentId: createdStudents[0]._id, jobId: job0, status: 'offered', pipelineStage: 'hire', subStatus: 'Contract sent', stageMovedAt: daysAgo(1), appliedAt: daysAgo(14) },
+      { studentId: createdStudents[1]._id, jobId: job0, status: 'shortlisted', pipelineStage: 'screening', subStatus: 'Screening scheduled', stageMovedAt: daysAgo(3), appliedAt: daysAgo(10) },
+      { studentId: createdStudents[2]._id, jobId: job0, status: 'shortlisted', pipelineStage: 'assignment', subStatus: 'Assignment sent', stageMovedAt: daysAgo(2), appliedAt: daysAgo(8) },
+      { studentId: createdStudents[3]._id, jobId: job0, status: 'interviewed', pipelineStage: 'technical_interview', subStatus: 'Interview scheduled', stageMovedAt: daysAgo(1), appliedAt: daysAgo(7) },
+      { studentId: createdStudents[4]._id, jobId: job0, status: 'applied', pipelineStage: 'application', subStatus: 'Invitation pending', stageMovedAt: daysAgo(5), appliedAt: daysAgo(5) }
+    ];
+    await Application.insertMany(applications);
+    console.log('📋 Created pipeline applications (sample stages for job 0)');
 
     // Create a hire record (for testing anti-moonlighting)
     const hire = new Hire({
@@ -658,6 +839,7 @@ const seedData = async () => {
     console.log(`- ${createdProjects.length} projects`);
     console.log(`- ${createdRecruiters.length} recruiters`);
     console.log(`- ${createdJobs.length} jobs`);
+    console.log(`- ${applications.length} pipeline applications`);
     console.log(`- ${calendarEvents.length} calendar events`);
     console.log(`- 1 admin`);
     console.log(`- 1 hire record`);

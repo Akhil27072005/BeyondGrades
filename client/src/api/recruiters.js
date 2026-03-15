@@ -7,6 +7,11 @@ export const recruitersAPI = {
     return response.data
   },
 
+  getDashboardSummary: async () => {
+    const response = await apiClient.get('/recruiters/me/dashboard-summary')
+    return response.data
+  },
+
   // Update profile
   updateProfile: async (profileData) => {
     const response = await apiClient.put('/recruiters/me', profileData)
@@ -16,6 +21,12 @@ export const recruitersAPI = {
   // Register company
   registerCompany: async (companyData) => {
     const response = await apiClient.post('/recruiters/register-company', companyData)
+    return response.data
+  },
+
+  // Update company details
+  updateCompanyDetails: async (companyData) => {
+    const response = await apiClient.put('/recruiters/me/company', companyData)
     return response.data
   },
 
@@ -42,6 +53,23 @@ export const recruitersAPI = {
     const response = await apiClient.get(`/recruiters/me/jobs/${jobId}/shortlist`, {
       params: { topN, allowHired }
     })
+    return response.data
+  },
+
+  getPipeline: async (jobId, sort = 'timeInStage') => {
+    const response = await apiClient.get(`/recruiters/me/jobs/${jobId}/pipeline`, {
+      params: { sort }
+    })
+    return response.data
+  },
+
+  updateApplicationStage: async (jobId, applicationId, body) => {
+    const response = await apiClient.patch(`/recruiters/me/jobs/${jobId}/applications/${applicationId}`, body)
+    return response.data
+  },
+
+  addToPipeline: async (jobId, studentId) => {
+    const response = await apiClient.post(`/recruiters/me/jobs/${jobId}/pipeline`, { studentId })
     return response.data
   },
 

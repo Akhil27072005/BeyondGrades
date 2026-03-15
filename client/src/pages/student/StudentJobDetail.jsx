@@ -9,7 +9,8 @@ const SAMPLE_JOB_DETAIL = {
   title: 'Front-end Engineer Intern',
   company: 'BeyondGrades Labs',
   domain: 'Web Development',
-  locationType: 'Remote',
+  location: 'Remote',
+  locationType: 'remote',
   minExperienceYears: 0,
   batchTarget: [2025, 2026],
   description:
@@ -31,6 +32,8 @@ const StudentJobDetail = () => {
   const [job, setJob] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [applied, setApplied] = useState(false)
+  const [applying, setApplying] = useState(false)
 
   const recommendationFromState = locationState.recommendation || null
 
@@ -81,6 +84,20 @@ const StudentJobDetail = () => {
     return null
   }
 
+  const handleApply = async () => {
+    if (id === 'sample-job' || applying || applied) return
+    setApplying(true)
+    setError('')
+    try {
+      await studentsAPI.applyToJob(id)
+      setApplied(true)
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to apply')
+    } finally {
+      setApplying(false)
+    }
+  }
+
   const matchPercent = recommendationFromState
     ? Math.round((recommendationFromState.matchScore || 0) * 100)
     : null
@@ -117,7 +134,7 @@ const StudentJobDetail = () => {
                 <div className="d-flex flex-wrap gap-2 mt-2">
                   <Badge bg="light" text="dark" className="sjd-pill-badge">
                     <i className="bi bi-geo-alt me-1" aria-hidden />
-                    {job.locationType}
+                    {job.location || (job.locationType ? job.locationType.charAt(0).toUpperCase() + job.locationType.slice(1) : '—')}
                   </Badge>
                   {typeof job.minExperienceYears === 'number' && (
                     <Badge bg="light" text="dark" className="sjd-pill-badge">
@@ -148,8 +165,13 @@ const StudentJobDetail = () => {
                     <div className="sjd-match-score">{matchPercent}%</div>
                   </div>
                 )}
-                <Button variant="primary" className="sjd-apply-btn">
-                  Apply now
+                <Button
+                  variant="primary"
+                  className="sjd-apply-btn"
+                  onClick={handleApply}
+                  disabled={id === 'sample-job' || applying || applied}
+                >
+                  {applying ? 'Applying…' : applied ? 'Applied' : 'Apply now'}
                 </Button>
               </div>
             </div>
@@ -227,7 +249,7 @@ const StudentJobDetail = () => {
                 <h6 className="sjd-section-title mb-3">Logistics</h6>
                 <ul className="sjd-body-list mb-0">
                   <li>
-                    <strong>Location:</strong> {job.locationType}
+                    <strong>Location:</strong> {job.location || (job.locationType ? job.locationType.charAt(0).toUpperCase() + job.locationType.slice(1) : '—')}
                   </li>
                   {typeof job.minExperienceYears === 'number' && (
                     <li>

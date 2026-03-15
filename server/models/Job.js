@@ -25,6 +25,10 @@ const jobSchema = new mongoose.Schema({
     ref: 'Recruiter',
     required: true 
   },
+  companyId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Company'
+  },
   title: { type: String, required: true },
   description: { type: String, required: true },
   domain: { type: String, required: true },
@@ -37,13 +41,22 @@ const jobSchema = new mongoose.Schema({
     default: 'onsite'
   },
   batchTarget: [{ type: Number }], // graduation years
-  shortlistSettings: shortlistSettingsSchema
+  shortlistSettings: shortlistSettingsSchema,
+  // Optional fields (project/job setup flow)
+  industry: { type: String },
+  contactPerson: { type: String },
+  contactEmail: { type: String },
+  contactPhone: { type: String },
+  jobType: { type: String },
+  jobDuration: { type: String },
+  location: { type: String }
 }, {
   timestamps: true
 });
 
 // Indexes
 jobSchema.index({ recruiterId: 1 });
+jobSchema.index({ companyId: 1 });
 jobSchema.index({ 'requiredSkills.name': 1 });
 jobSchema.index({ domain: 1 });
 jobSchema.index({ batchTarget: 1 });

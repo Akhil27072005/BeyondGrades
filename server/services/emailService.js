@@ -78,6 +78,39 @@ const sendInterviewInvite = async (email, studentName, jobTitle, companyName, in
   }
 };
 
+const DEFAULT_TEAM_PASSWORD = 'password123';
+
+const sendTeamMemberWelcomeEmail = async (email, firstName, lastName, companyName, loginUrl) => {
+  try {
+    const transporter = createTransporter();
+    const name = [firstName, lastName].filter(Boolean).join(' ') || email;
+    const mailOptions = {
+      from: process.env.SMTP_USER,
+      to: email,
+      subject: `You've been added to ${companyName} on Beyond Grades`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #7c3aed;">Welcome to Beyond Grades</h2>
+          <p>Hi ${name},</p>
+          <p>You've been added as a team member for <strong>${companyName}</strong> on Beyond Grades.</p>
+          <p>Your temporary password is: <strong>${DEFAULT_TEAM_PASSWORD}</strong></p>
+          <p>You can log in here:</p>
+          <a href="${loginUrl}" 
+             style="background-color: #7c3aed; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
+            Log in to Beyond Grades
+          </a>
+          <p style="margin-top: 24px; color: #64748b;">We recommend changing your password after your first login. You can do this from your account settings whenever you're ready.</p>
+        </div>
+      `
+    };
+    await transporter.sendMail(mailOptions);
+    console.log('Team member welcome email sent to', email);
+  } catch (error) {
+    console.error('Error sending team member welcome email:', error);
+    throw error;
+  }
+};
+
 const sendHiredNotification = async (email, studentName, jobTitle, companyName) => {
   try {
     const transporter = createTransporter();
@@ -110,5 +143,7 @@ const sendHiredNotification = async (email, studentName, jobTitle, companyName) 
 module.exports = {
   sendVerificationEmail,
   sendInterviewInvite,
-  sendHiredNotification
+  sendHiredNotification,
+  sendTeamMemberWelcomeEmail,
+  DEFAULT_TEAM_PASSWORD
 };

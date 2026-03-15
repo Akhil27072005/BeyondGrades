@@ -21,23 +21,10 @@ const Register = () => {
     cgpa: '',
     linkedInUrl: ''
   })
-  const [recruiterData, setRecruiterData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    companyName: '',
-    companyWebsite: '',
-    companySize: '',
-    industry: '',
-    companyDescription: '',
-    contactPhone: '',
-    jobTitle: '',
-    linkedInUrl: ''
-  })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   
-  const { signupStudent, signupRecruiter } = useAuth()
+  const { signupStudent } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -59,13 +46,6 @@ const Register = () => {
     })
   }
 
-  const handleRecruiterChange = (e) => {
-    setRecruiterData({
-      ...recruiterData,
-      [e.target.name]: e.target.value
-    })
-  }
-
   const handleStudentSubmit = async (e) => {
     e.preventDefault()
     setError('')
@@ -81,21 +61,6 @@ const Register = () => {
     }
   }
 
-  const handleRecruiterSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
-
-    try {
-      await signupRecruiter(recruiterData)
-      navigate('/recruiter/dashboard')
-    } catch (error) {
-      setError(error.response?.data?.message || 'Registration failed')
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
     <div
       className="min-vh-100 d-flex flex-column landing-page"
@@ -104,8 +69,8 @@ const Register = () => {
       }}
     >
       <LandingHeader />
-      <main className="flex-grow-1 py-5">
-        <Container>
+      <main className="flex-grow-1 d-flex align-items-center py-5">
+        <Container className="w-100">
           <Row className="justify-content-center">
             <Col md={10} lg={8} xl={7}>
               <Card className="shadow border-0 rounded-4 overflow-hidden auth-form-card" style={{ background: 'rgba(255,255,255,0.95)' }}>
@@ -321,192 +286,24 @@ const Register = () => {
                   </Tab>
 
                   <Tab eventKey="recruiter" title="Recruiter">
-                    <Form onSubmit={handleRecruiterSubmit}>
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group className="mb-3">
-                            <Form.Label className="fw-semibold" style={{ color: '#334155' }}>Full Name</Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="name"
-                              value={recruiterData.name}
-                              onChange={handleRecruiterChange}
-                              required
-                              placeholder="Enter your full name"
-                              className="rounded-3 border-secondary border-opacity-25"
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group className="mb-3">
-                            <Form.Label className="fw-semibold" style={{ color: '#334155' }}>Email Address</Form.Label>
-                            <Form.Control
-                              type="email"
-                              name="email"
-                              value={recruiterData.email}
-                              onChange={handleRecruiterChange}
-                              required
-                              placeholder="Enter your corporate email"
-                              className="rounded-3 border-secondary border-opacity-25"
-                            />
-                          </Form.Group>
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group className="mb-3">
-                            <Form.Label className="fw-semibold" style={{ color: '#334155' }}>Password</Form.Label>
-                            <Form.Control
-                              type="password"
-                              name="password"
-                              value={recruiterData.password}
-                              onChange={handleRecruiterChange}
-                              required
-                              placeholder="Create a password"
-                              className="rounded-3 border-secondary border-opacity-25"
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group className="mb-3">
-                            <Form.Label className="fw-semibold" style={{ color: '#334155' }}>Company Name</Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="companyName"
-                              value={recruiterData.companyName}
-                              onChange={handleRecruiterChange}
-                              required
-                              placeholder="Enter company name"
-                              className="rounded-3 border-secondary border-opacity-25"
-                            />
-                          </Form.Group>
-                        </Col>
-                      </Row>
-
-                      <Form.Group className="mb-3">
-                        <Form.Label className="fw-semibold" style={{ color: '#334155' }}>Company Website</Form.Label>
-                        <Form.Control
-                          type="url"
-                          name="companyWebsite"
-                          value={recruiterData.companyWebsite}
-                          onChange={handleRecruiterChange}
-                          placeholder="https://yourcompany.com"
-                          className="rounded-3 border-secondary border-opacity-25"
-                        />
-                      </Form.Group>
-
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group className="mb-3">
-                            <Form.Label className="fw-semibold" style={{ color: '#334155' }}>Company Size</Form.Label>
-                            <Form.Select
-                              name="companySize"
-                              value={recruiterData.companySize}
-                              onChange={handleRecruiterChange}
-                              className="rounded-3 border-secondary border-opacity-25"
-                            >
-                              <option value="">Select size</option>
-                              <option value="1-10">1–10</option>
-                              <option value="11-50">11–50</option>
-                              <option value="51-200">51–200</option>
-                              <option value="201-500">201–500</option>
-                              <option value="500+">500+</option>
-                            </Form.Select>
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group className="mb-3">
-                            <Form.Label className="fw-semibold" style={{ color: '#334155' }}>Industry</Form.Label>
-                            <Form.Select
-                              name="industry"
-                              value={recruiterData.industry}
-                              onChange={handleRecruiterChange}
-                              className="rounded-3 border-secondary border-opacity-25"
-                            >
-                              <option value="">Select industry</option>
-                              <option value="Technology">Technology</option>
-                              <option value="Finance">Finance</option>
-                              <option value="Healthcare">Healthcare</option>
-                              <option value="E-commerce">E-commerce</option>
-                              <option value="Education">Education</option>
-                              <option value="Consulting">Consulting</option>
-                              <option value="Manufacturing">Manufacturing</option>
-                              <option value="Other">Other</option>
-                            </Form.Select>
-                          </Form.Group>
-                        </Col>
-                      </Row>
-
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group className="mb-3">
-                            <Form.Label className="fw-semibold" style={{ color: '#334155' }}>Your Job Title</Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="jobTitle"
-                              value={recruiterData.jobTitle}
-                              onChange={handleRecruiterChange}
-                              placeholder="e.g. HR Manager, Talent Lead"
-                              className="rounded-3 border-secondary border-opacity-25"
-                            />
-                          </Form.Group>
-                        </Col>
-                        <Col md={6}>
-                          <Form.Group className="mb-3">
-                            <Form.Label className="fw-semibold" style={{ color: '#334155' }}>Contact Phone</Form.Label>
-                            <Form.Control
-                              type="tel"
-                              name="contactPhone"
-                              value={recruiterData.contactPhone}
-                              onChange={handleRecruiterChange}
-                              placeholder="Company contact number"
-                              className="rounded-3 border-secondary border-opacity-25"
-                            />
-                          </Form.Group>
-                        </Col>
-                      </Row>
-
-                      <Form.Group className="mb-3">
-                        <Form.Label className="fw-semibold" style={{ color: '#334155' }}>About Company</Form.Label>
-                        <Form.Control
-                          as="textarea"
-                          name="companyDescription"
-                          value={recruiterData.companyDescription}
-                          onChange={handleRecruiterChange}
-                          placeholder="Brief description of your company and what you do"
-                          rows={3}
-                          className="rounded-3 border-secondary border-opacity-25"
-                        />
-                      </Form.Group>
-
-                      <Form.Group className="mb-4">
-                        <Form.Label className="fw-semibold" style={{ color: '#334155' }}>LinkedIn Profile</Form.Label>
-                        <Form.Control
-                          type="url"
-                          name="linkedInUrl"
-                          value={recruiterData.linkedInUrl}
-                          onChange={handleRecruiterChange}
-                          placeholder="https://linkedin.com/in/yourprofile"
-                          className="rounded-3 border-secondary border-opacity-25"
-                        />
-                      </Form.Group>
-
+                    <div className="text-center py-3">
+                      <p className="text-muted mb-4">
+                        Set up your company and create your recruiter account in a few steps.
+                      </p>
                       <Button
-                        type="submit"
-                        variant="outline-primary"
+                        as={Link}
+                        to="/register/recruiter"
                         size="lg"
-                        className="w-100 rounded-3 fw-semibold"
+                        className="rounded-3 fw-semibold border-0"
                         style={{
-                          borderColor: '#2563eb',
-                          color: '#2563eb',
-                          padding: '0.65rem 1rem',
+                          backgroundColor: '#2563eb',
+                          color: '#fff',
+                          padding: '0.65rem 1.5rem',
                         }}
-                        disabled={loading}
                       >
-                        {loading ? 'Creating Account...' : 'Sign Up as Recruiter'}
+                        Set up company & create account
                       </Button>
-                    </Form>
+                    </div>
                   </Tab>
                 </Tabs>
 

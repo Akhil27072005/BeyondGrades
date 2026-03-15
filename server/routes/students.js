@@ -5,6 +5,7 @@ const { validateProject } = require('../middleware/validation');
 const Student = require('../models/Student');
 const Project = require('../models/Project');
 const Job = require('../models/Job');
+const Application = require('../models/Application');
 const CalendarEvent = require('../models/CalendarEvent');
 const { tagProject } = require('../services/autoTagger');
 const matcherClient = require('../services/matcherClient');
@@ -211,29 +212,40 @@ router.delete('/me/projects/:projectId', auth, requireRole(['student']), async (
   }
 });
 
-// Get public student profile
-router.get('/:id', async (req, res) => {
+// Get public student profile (recruiters and students only) – includes projects and jobs applied
+router.get('/:id', auth, requireRole(['recruiter', 'student']), async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     const student = await Student.findById(id)
       .populate('projects')
-      .populate('collegeId', 'name')
-      .select('-passwordHash -email -phone');
-    
+      .populate('collegeId', 'name address')
+      .select('-passwordHash -email -phone')
+      .lean();
+
     if (!student) {
       return res.status(404).json({ message: 'Student not found' });
     }
 
     // Check visibility settings
-    if (!student.visibility.public) {
+    if (student.visibility && !student.visibility.public) {
       return res.status(403).json({ message: 'Profile is private' });
     }
 
-    // Remove sensitive information
+    const applications = await Application.find({ studentId: id })
+      .populate('jobId', 'title domain')
+      .sort({ appliedAt: -1 })
+      .lean();
+
     const publicProfile = {
-      ...student.toObject(),
-      contactAllowed: student.visibility.contactAllowed
+      ...student,
+      contactAllowed: student.visibility?.contactAllowed,
+      applications: applications.map(a => ({
+        _id: a._id,
+        status: a.status,
+        appliedAt: a.appliedAt,
+        job: a.jobId ? { title: a.jobId.title, domain: a.jobId.domain } : null
+      }))
     };
 
     res.json(publicProfile);
@@ -270,7 +282,9 @@ router.get('/me/recommended-jobs', auth, requireRole(['student']), async (req, r
     }
 
     // Get all jobs and use matcher service to get recommendations
-    const jobs = await Job.find({}).populate('recruiterId', 'companyName');
+    const jobs = await Job.find({})
+      .populate('recruiterId', 'name')
+      .populate('companyId', 'name');
     
     const recommendations = [];
     
@@ -287,8 +301,11 @@ router.get('/me/recommended-jobs', auth, requireRole(['student']), async (req, r
               id: job._id,
               title: job.title,
               description: job.description,
-              company: job.recruiterId.companyName,
+              company: job.companyId ? job.companyId.name : undefined,
+              recruiterId: job.recruiterId ? job.recruiterId._id : undefined,
+              companyId: job.companyId ? job.companyId._id : undefined,
               domain: job.domain,
+              location: job.location || (job.locationType ? job.locationType.toUpperCase() : undefined),
               locationType: job.locationType
             },
             matchScore: studentMatch.score,
@@ -323,7 +340,9 @@ router.get('/jobs/:id', auth, requireRole(['student']), async (req, res) => {
   try {
     const { id } = req.params;
 
-    const job = await Job.findById(id).populate('recruiterId', 'companyName');
+    const job = await Job.findById(id)
+      .populate('recruiterId', 'name')
+      .populate('companyId', 'name');
     if (!job) {
       return res.status(404).json({ message: 'Job not found' });
     }
@@ -332,8 +351,11 @@ router.get('/jobs/:id', auth, requireRole(['student']), async (req, res) => {
       id: job._id,
       title: job.title,
       description: job.description,
-      company: job.recruiterId ? job.recruiterId.companyName : undefined,
+      company: job.companyId ? job.companyId.name : undefined,
+      recruiterId: job.recruiterId ? job.recruiterId._id : undefined,
+      companyId: job.companyId ? job.companyId._id : undefined,
       domain: job.domain,
+      location: job.location,
       locationType: job.locationType,
       minExperienceYears: job.minExperienceYears,
       batchTarget: job.batchTarget,
@@ -344,6 +366,40 @@ router.get('/jobs/:id', auth, requireRole(['student']), async (req, res) => {
     });
   } catch (error) {
     console.error('Get job detail (student) error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Apply to job (creates application in pipeline "application" stage)
+router.post('/me/jobs/:jobId/apply', auth, requireRole(['student']), async (req, res) => {
+  try {
+    const { jobId } = req.params;
+    const studentId = req.user._id;
+
+    const job = await Job.findById(jobId);
+    if (!job) {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+
+    const existing = await Application.findOne({ jobId, studentId });
+    if (existing) {
+      return res.status(200).json({ message: 'Already applied', application: existing });
+    }
+
+    const now = new Date();
+    const application = new Application({
+      jobId,
+      studentId,
+      status: 'applied',
+      pipelineStage: 'application',
+      stageMovedAt: now,
+      appliedAt: now
+    });
+    await application.save();
+
+    res.status(201).json({ message: 'Application submitted', application });
+  } catch (error) {
+    console.error('Apply to job error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });

@@ -1,0 +1,10 @@
+.recruiter-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+}
+
+.recruiter-layout-main {
+  flex: 1;
+}

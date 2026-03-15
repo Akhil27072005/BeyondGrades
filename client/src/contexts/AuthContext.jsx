@@ -92,7 +92,27 @@ export const AuthProvider = ({ children }) => {
       const response = await authAPI.signupRecruiter(userData)
       const { token: newToken, user: userData } = response
       
-      // Ensure user object has role property
+      const userWithRole = {
+        ...userData,
+        role: userData.role
+      }
+      
+      localStorage.setItem('token', newToken)
+      localStorage.setItem('user', JSON.stringify(userWithRole))
+      setToken(newToken)
+      setUser(userWithRole)
+      
+      return response
+    } catch (error) {
+      throw error
+    }
+  }
+
+  const signupRecruiterFull = async (payload) => {
+    try {
+      const response = await authAPI.signupRecruiterFull(payload)
+      const { token: newToken, user: userData } = response
+      
       const userWithRole = {
         ...userData,
         role: userData.role
@@ -132,6 +152,7 @@ export const AuthProvider = ({ children }) => {
     login,
     signupStudent,
     signupRecruiter,
+    signupRecruiterFull,
     logout,
     verifyCollegeEmail,
     isAuthenticated: !!user,

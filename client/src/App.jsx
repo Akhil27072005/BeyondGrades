@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import LandingPage from './pages/LandingPage'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import RecruiterSignupFlow from './pages/recruiter/RecruiterSignupFlow'
 import StudentDashboard from './pages/student/StudentDashboard'
 import StudentProfile from './pages/student/StudentProfile'
 import StudentProjects from './pages/student/StudentProjects'
@@ -16,9 +17,16 @@ import RecruiterDashboard from './pages/recruiter/RecruiterDashboard'
 import CompanyRegistration from './pages/recruiter/CompanyRegistration'
 import CreateJob from './pages/recruiter/CreateJob'
 import JobDetail from './pages/recruiter/JobDetail'
+import RecruiterJobsList from './pages/recruiter/RecruiterJobsList'
+import RecruiterProfile from './pages/recruiter/RecruiterProfile'
 import SkillVisualizer from './pages/recruiter/SkillVisualizer'
+import ProfileSearch from './pages/ProfileSearch'
+import ViewStudentProfile from './pages/ViewStudentProfile'
+import ViewRecruiterProfile from './pages/ViewRecruiterProfile'
+import ViewCompanyProfile from './pages/ViewCompanyProfile'
 import ProtectedRoute from './components/ProtectedRoute'
 import StudentLayout from './components/StudentLayout'
+import RecruiterLayout from './components/RecruiterLayout'
 
 // Component to redirect authenticated users away from auth pages
 const AuthRedirect = ({ children }) => {
@@ -78,7 +86,7 @@ const RootRedirect = () => {
 
 function AppContent() {
   const location = useLocation()
-  const hideGlobalNav = ['/', '/login', '/register'].includes(location.pathname) || location.pathname.startsWith('/student')
+  const hideGlobalNav = ['/', '/login', '/register', '/register/recruiter'].includes(location.pathname) || location.pathname.startsWith('/student') || location.pathname.startsWith('/recruiter')
 
   return (
     <div className="App">
@@ -94,6 +102,11 @@ function AppContent() {
             <Route path="/register" element={
               <AuthRedirect>
                 <Register />
+              </AuthRedirect>
+            } />
+            <Route path="/register/recruiter" element={
+              <AuthRedirect>
+                <RecruiterSignupFlow />
               </AuthRedirect>
             } />
             
@@ -147,33 +160,44 @@ function AppContent() {
                 </StudentLayout>
               </ProtectedRoute>
             } />
-            
-            {/* Recruiter routes */}
-            <Route path="/recruiter/dashboard" element={
-              <ProtectedRoute role="recruiter">
-                <RecruiterDashboard />
+            <Route path="/student/search" element={
+              <ProtectedRoute role="student">
+                <StudentLayout>
+                  <ProfileSearch />
+                </StudentLayout>
               </ProtectedRoute>
             } />
-            <Route path="/recruiter/company" element={
-              <ProtectedRoute role="recruiter">
-                <CompanyRegistration />
+            <Route path="/student/view/recruiter/:id" element={
+              <ProtectedRoute role="student">
+                <StudentLayout>
+                  <ViewRecruiterProfile />
+                </StudentLayout>
               </ProtectedRoute>
             } />
-            <Route path="/recruiter/jobs/create" element={
-              <ProtectedRoute role="recruiter">
-                <CreateJob />
+            <Route path="/student/view/company/:id" element={
+              <ProtectedRoute role="student">
+                <StudentLayout>
+                  <ViewCompanyProfile />
+                </StudentLayout>
               </ProtectedRoute>
             } />
-            <Route path="/recruiter/jobs/:id" element={
+
+            {/* Recruiter routes – common header via RecruiterLayout */}
+            <Route path="/recruiter" element={
               <ProtectedRoute role="recruiter">
-                <JobDetail />
+                <RecruiterLayout />
               </ProtectedRoute>
-            } />
-            <Route path="/recruiter/skills" element={
-              <ProtectedRoute role="recruiter">
-                <SkillVisualizer />
-              </ProtectedRoute>
-            } />
+            }>
+              <Route index element={<Navigate to="dashboard" replace />} />
+              <Route path="dashboard" element={<RecruiterDashboard />} />
+              <Route path="profile" element={<RecruiterProfile />} />
+              <Route path="company" element={<CompanyRegistration />} />
+              <Route path="view/student/:id" element={<ViewStudentProfile />} />
+              <Route path="jobs/create" element={<CreateJob />} />
+              <Route path="jobs/:id" element={<JobDetail />} />
+              <Route path="jobs" element={<RecruiterJobsList />} />
+              <Route path="skills" element={<SkillVisualizer />} />
+            </Route>
       </Routes>
     </div>
   )

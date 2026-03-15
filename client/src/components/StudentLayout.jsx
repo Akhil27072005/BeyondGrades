@@ -10,7 +10,8 @@ const SIDEBAR_NAV_ITEMS = [
   { to: '/student/calendar', icon: 'bi-calendar3', label: 'Calendar' },
   { to: '/student/projects', icon: 'bi-folder2-open', label: 'Projects' },
   { to: '/student/jobs', icon: 'bi-briefcase-fill', label: 'Jobs' },
-  { to: '/student/alumni', icon: 'bi-people-fill', label: 'Alumni' }
+  { to: '/student/alumni', icon: 'bi-people-fill', label: 'Alumni' },
+  { to: '/student/search', icon: 'bi-search', label: 'View profiles' }
 ]
 
 const StudentLayout = ({ children }) => {

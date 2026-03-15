@@ -55,6 +55,12 @@ export const studentsAPI = {
     return response.data
   },
 
+  // Apply to job (adds to pipeline application stage)
+  applyToJob: async (jobId) => {
+    const response = await apiClient.post(`/students/me/jobs/${jobId}/apply`)
+    return response.data
+  },
+
   // Get calendar events (optional query: start, end as ISO strings)
   getCalendarEvents: async (params = {}) => {
     const response = await apiClient.get('/students/me/calendar', { params })

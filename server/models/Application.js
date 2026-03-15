@@ -18,12 +18,22 @@ const applicationSchema = new mongoose.Schema({
     default: 'applied'
   },
   appliedAt: { type: Date, default: Date.now },
-  notes: { type: String }
+  notes: { type: String },
+  // Pipeline: which hiring stage this candidate is in
+  pipelineStage: {
+    type: String,
+    enum: ['application', 'screening', 'assignment', 'technical_interview', 'hire'],
+    default: 'application'
+  },
+  subStatus: { type: String }, // e.g. "Invitation pending", "Screening scheduled", "Contract sent"
+  stageMovedAt: { type: Date },
+  stageDeadline: { type: Date }
 });
 
 // Indexes
 applicationSchema.index({ jobId: 1 });
 applicationSchema.index({ studentId: 1 });
 applicationSchema.index({ status: 1 });
+applicationSchema.index({ jobId: 1, pipelineStage: 1 });
 
 module.exports = mongoose.model('Application', applicationSchema);
